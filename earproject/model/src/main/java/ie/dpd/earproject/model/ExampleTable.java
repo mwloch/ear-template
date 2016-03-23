@@ -23,9 +23,23 @@ public class ExampleTable {
     private Boolean booleanField;
     private Date dateField;
 
+    /**
+     * Default empty constructor
+     */
     public ExampleTable() {
     }
 
+    /**
+     * Main constructor initializing all fields
+     * <p>
+     * @param tableID
+     * @param charField
+     * @param intField
+     * @param dateTimeField
+     * @param moneyField
+     * @param booleanField
+     * @param dateField
+     */
     public ExampleTable(Integer tableID, String charField, Integer intField, Timestamp dateTimeField, BigDecimal moneyField, Boolean booleanField, Date dateField) {
         this.tableID = tableID;
         this.charField = charField;
@@ -90,58 +104,114 @@ public class ExampleTable {
         return "ExampleTable{" + "tableID=" + tableID + ", charField=" + charField + ", intField=" + intField + ", dateTimeField=" + dateTimeField + ", moneyField=" + moneyField + ", booleanField=" + booleanField + ", dateField=" + dateField + '}';
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getTableID() {
         return tableID;
     }
 
+    /**
+     *
+     * @param tableID
+     */
     public void setTableID(Integer tableID) {
         this.tableID = tableID;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCharField() {
         return charField;
     }
 
+    /**
+     *
+     * @param charField
+     */
     public void setCharField(String charField) {
         this.charField = charField;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIntField() {
         return intField;
     }
 
+    /**
+     *
+     * @param intField
+     */
     public void setIntField(Integer intField) {
         this.intField = intField;
     }
 
+    /**
+     *
+     * @return
+     */
     public Timestamp getDateTimeField() {
         return dateTimeField;
     }
 
+    /**
+     *
+     * @param dateTimeField
+     */
     public void setDateTimeField(Timestamp dateTimeField) {
         this.dateTimeField = dateTimeField;
     }
 
+    /**
+     *
+     * @return
+     */
     public BigDecimal getMoneyField() {
         return moneyField;
     }
 
+    /**
+     *
+     * @param moneyField
+     */
     public void setMoneyField(BigDecimal moneyField) {
         this.moneyField = moneyField;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getBooleanField() {
         return booleanField;
     }
 
+    /**
+     *
+     * @param booleanField
+     */
     public void setBooleanField(Boolean booleanField) {
         this.booleanField = booleanField;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDateField() {
         return dateField;
     }
 
+    /**
+     *
+     * @param dateField
+     */
     public void setDateField(Date dateField) {
         this.dateField = dateField;
     }

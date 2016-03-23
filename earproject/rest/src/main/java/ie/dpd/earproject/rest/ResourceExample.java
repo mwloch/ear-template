@@ -16,17 +16,32 @@ import javax.ws.rs.Path;
 @Path("/example")
 public class ResourceExample {
     
+    /**
+     * Method handling GET requests on root url: ../example
+     * <p>
+     * @return Returns example string
+     */
     @GET
     public String doGet(){
         return "This is GET resource on /example URL";
     }
     
+    /**
+     * Method handling GET requests on sub-url: ../example/sub
+     * <p>
+     * @return Returns example string
+     */
     @GET
     @Path("sub")
     public String doGetSub(){
         return "This is GET resource on /example/sub URL";
     }
 
+    /**
+     * Method handling POST requests on sub-url: ../example/sub
+     * <p>
+     * @return Returns example string
+     */
     @POST
     @Path("sub")
     public String doPostSub(){

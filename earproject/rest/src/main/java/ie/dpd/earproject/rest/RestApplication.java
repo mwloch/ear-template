@@ -9,7 +9,7 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 /**
- *
+ * Main application class
  * @author marcin.wloch
  */
 @ApplicationPath("/api")
