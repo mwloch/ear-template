@@ -6,6 +6,7 @@ package ie.dpd.earproject.ejb;
 
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import ie.dpd.earproject.interfaces.EjbInterface;
 
 /**
  *
@@ -13,7 +14,7 @@ import javax.ejb.LocalBean;
  */
 @Stateless
 @LocalBean
-public class NewSessionBean {
+public class NewSessionBean implements EjbInterface{
 
     public String myEjbMethod() {
         return "Hi, I am your session EJB";
