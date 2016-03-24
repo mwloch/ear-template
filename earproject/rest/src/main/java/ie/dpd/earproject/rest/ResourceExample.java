@@ -6,6 +6,9 @@
 package ie.dpd.earproject.rest;
 
 import ie.dpd.earproject.interfaces.EjbInterface;
+import ie.dpd.earproject.model.ExampleTable;
+import ie.dpd.earproject.model.RecordResponse;
+import java.math.BigDecimal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -14,6 +17,9 @@ import javax.naming.NamingException;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
@@ -44,6 +50,12 @@ public class ResourceExample {
     }
 
     @GET
+    @Path("dupa")
+    public ExampleTable doGetDupa(){
+        return new ExampleTable(11,"dupa",55,java.sql.Timestamp.valueOf("2016-01-01 11:11:11"),BigDecimal.ONE,Boolean.TRUE,java.sql.Date.valueOf("2016-01-01"));
+    }
+    
+    @GET
     @Path("ejb")
     public String doGetEjb(){
         Object lookObj=null;
@@ -72,5 +84,30 @@ public class ResourceExample {
     public String doPostSub(){
         return "This is POST resource on /example/sub URL";
     }
-    
+
+    /**
+     * Method handling POST requests on sub-url: ../example/dbaccess/pool/getrecord{recID}
+     * <p>
+     * Method uses recID path param as input 
+     * <p>
+     * Method returns RecordResponse object mapped to XML using JAXB 
+     * <p>
+     * @param recordID Record ID taken from PathParam
+     * @return Returns example string
+     */
+    @GET
+    @Path("dbaccess/pool/getrecord{recID}")
+    @Produces(MediaType.APPLICATION_XML)
+    public RecordResponse doGetDbPoolRec(@PathParam("recID") int recordID ){
+        return new RecordResponse(5);
+        // return new ExampleTable(recordID,"aa",55,java.sql.Timestamp.valueOf("2016-01-01 11:11:11"),BigDecimal.ONE,Boolean.TRUE,java.sql.Date.valueOf("2016-01-01"));
+    }
+
+    @GET
+    @Path("dbaccess/pool/getexample/{recID}")
+    @Produces(MediaType.APPLICATION_XML)
+    public ExampleTable doGetDbPoolExm(@PathParam("recID") int recordID ){        
+        return new ExampleTable(recordID,"aa",55,java.sql.Timestamp.valueOf("2016-01-01 11:11:11"),BigDecimal.ONE,Boolean.TRUE,java.sql.Date.valueOf("2016-01-01"));
+    }
+
 }

@@ -9,12 +9,19 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author marcin.wloch
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD) 
 public class ExampleTable {
+    @XmlElement(name="MyTableID")
     private Integer tableID;
     private String charField;
     private Integer intField;
