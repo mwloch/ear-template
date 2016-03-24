@@ -55,6 +55,12 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>interfaces</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>ejb</artifactId>
             <version>${project.version}</version>
             <type>ejb</type>

@@ -5,6 +5,12 @@
  */
 package ie.dpd.earproject.rest;
 
+import ie.dpd.earproject.interfaces.EjbInterface;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -37,6 +43,25 @@ public class ResourceExample {
         return "This is GET resource on /example/sub URL";
     }
 
+    @GET
+    @Path("ejb")
+    public String doGetEjb(){
+        Object lookObj=null;
+        InitialContext ic;
+        try {
+            ic = new InitialContext();
+            lookObj = ic.lookup("java:global/earproject-ear/ejb-1.0-SNAPSHOT/NewSessionBean");
+
+            EjbInterface sessionEjb = (EjbInterface) lookObj;
+            
+            return sessionEjb.myEjbMethod();
+        } catch (NamingException ex) {
+            Logger.getLogger(ResourceExample.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return "Failed to call EJB :(";
+    }
+    
     /**
      * Method handling POST requests on sub-url: ../example/sub
      * <p>
