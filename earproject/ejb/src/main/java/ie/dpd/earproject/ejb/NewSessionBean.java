@@ -13,7 +13,6 @@ import ie.dpd.earproject.interfaces.EjbInterface;
  * @author martin
  */
 @Stateless
-@LocalBean
 public class NewSessionBean implements EjbInterface{
 
     public String myEjbMethod() {
