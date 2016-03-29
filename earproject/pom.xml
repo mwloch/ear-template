@@ -13,5 +13,6 @@
     <module>ejb</module>
     <module>interfaces</module>
     <module>dataaccess</module>
+    <module>error</module>
   </modules>
 </project>

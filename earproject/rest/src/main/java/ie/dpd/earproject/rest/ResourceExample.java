@@ -6,6 +6,7 @@
 package ie.dpd.earproject.rest;
 
 import ie.dpd.earproject.dataaccess.DBHandler;
+import ie.dpd.earproject.error.ILKError;
 import ie.dpd.earproject.interfaces.EjbInterface;
 import ie.dpd.earproject.model.ExampleTable;
 import java.io.IOException;
@@ -55,7 +56,7 @@ public class ResourceExample {
      * @return Returns example string
      */
     @GET
-    @Path("sub")
+    @Path("/sub")
     public String doGetSub(){
         return "This is GET resource on /example/sub URL";
     }
@@ -66,7 +67,7 @@ public class ResourceExample {
      * @return Example string obtained from EJB
      */
     @GET
-    @Path("ejb")
+    @Path("/ejb")
     public String doGetEjb(){
         Object lookObj=null;
         InitialContext ic;
@@ -114,9 +115,11 @@ public class ResourceExample {
             return exDB.getByID(recordID);
         } catch (IOException ex) {
             Logger.getLogger(ResourceExample.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }catch(ILKError ilke){
+            // If error occured, return null no matter what error that was
+            return null;
         }
-
-        return null;
         // return new ExampleTable(recordID,"aa",55,java.sql.Timestamp.valueOf("2016-01-01 11:11:11"),BigDecimal.ONE,Boolean.TRUE,java.sql.Date.valueOf("2016-01-01"));
     }
 
@@ -139,9 +142,11 @@ public class ResourceExample {
             return exDB.getByID(recordID);
         } catch (IOException ex) {
             Logger.getLogger(ResourceExample.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }catch(ILKError ilke){
+            // If error occured, return null no matter what error that was
+            return null;
         }
-
-        return null;
         // return new ExampleTable(recordID,"aa",55,java.sql.Timestamp.valueOf("2016-01-01 11:11:11"),BigDecimal.ONE,Boolean.TRUE,java.sql.Date.valueOf("2016-01-01"));
     }
     
@@ -164,9 +169,12 @@ public class ResourceExample {
             return exDB.listByBoolean(myFlag);
         } catch (IOException ex) {
             Logger.getLogger(ResourceExample.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }catch(ILKError ilke){
+            // If error occured, return null no matter what error that was
+            return null;
         }
 
-        return null;
         // return new ExampleTable(recordID,"aa",55,java.sql.Timestamp.valueOf("2016-01-01 11:11:11"),BigDecimal.ONE,Boolean.TRUE,java.sql.Date.valueOf("2016-01-01"));
     }
     

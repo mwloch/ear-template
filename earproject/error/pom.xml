@@ -6,22 +6,8 @@
         <artifactId>earproject</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>dataaccess</artifactId>
+    <artifactId>error</artifactId>
     <packaging>jar</packaging>
-    <dependencies>
-        <dependency>
-            <groupId>ie.dpd.earproject</groupId>
-            <artifactId>model</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>error</artifactId>
-            <version>${project.version}</version>
-            <type>jar</type>
-        </dependency>
-    </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>

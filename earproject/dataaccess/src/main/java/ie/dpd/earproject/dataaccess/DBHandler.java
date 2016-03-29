@@ -5,6 +5,7 @@
  */
 package ie.dpd.earproject.dataaccess;
 
+import ie.dpd.earproject.error.ILKError;
 import ie.dpd.earproject.model.ExampleTable;
 import java.io.Closeable;
 import java.io.IOException;
@@ -97,42 +98,44 @@ public class DBHandler implements Closeable{
     }
     
     
-    public List<ExampleTable> listByBoolean(Boolean myFlag)  {
+    public List<ExampleTable> listByBoolean(Boolean myFlag) throws ILKError {
         try {
                 beginRead();
                 List<ExampleTable> list = qExecutor.listByBoolean(myFlag);
                 endRead(true);
                 return list;
         } catch(SQLException e) {
-                Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, "Error running method listByBoolean:" + e);
-                try {
-                        endRead(false);
-                } catch(SQLException e1) {
-                    Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, "Error rolling back method listByBoolean:" + e1);
-                }
+            String msg = "Error running method listByBoolean";
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, "Error running method listByBoolean:" + e);
+            try {
+                    endRead(false);
+            } catch(SQLException e1) {
+                Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, "Error rolling back method listByBoolean:" + e1);
+                msg+=" and rolling back transaction";
+            }
+
+            throw new ILKError(ILKError.Code.DB_ACCESS,msg,e);
         }
-        
-        // NULL denotes error executing the method
-        return null;
     }    
 
-    public ExampleTable getByID(int recID)  {
+    public ExampleTable getByID(int recID) throws ILKError  {
         try {
-                beginRead();
-                ExampleTable ret = qExecutor.getRecordByID(recID);
-                endRead(true);
-                return ret;
+            beginRead();
+            ExampleTable ret = qExecutor.getRecordByID(recID);
+            endRead(true);
+            return ret;
         } catch(SQLException e) {
-                Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, "Error running method listByBoolean:" + e);
-                try {
-                        endRead(false);
-                } catch(SQLException e1) {
-                    Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, "Error rolling back method listByBoolean:" + e1);
-                }
+            String msg = "Error running method getByID";
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, "Error running method listByBoolean:" + e);
+            try {
+                    endRead(false);
+            } catch(SQLException e1) {
+                Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, "Error rolling back method listByBoolean:" + e1);
+                msg+=" and rolling back transaction";
+            }
+            throw new ILKError(ILKError.Code.DB_ACCESS,msg,e);
         }
         
-        // NULL denotes error executing the method
-        return null;
     }    
     
     @Override
