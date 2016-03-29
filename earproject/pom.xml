@@ -12,5 +12,6 @@
     <module>rest</module>
     <module>ejb</module>
     <module>interfaces</module>
+    <module>dataaccess</module>
   </modules>
 </project>
