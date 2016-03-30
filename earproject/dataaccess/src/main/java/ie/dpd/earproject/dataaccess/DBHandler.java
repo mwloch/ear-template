@@ -33,10 +33,14 @@ public class DBHandler implements Closeable{
     
     public static DBHandler getDBHandler(String url,String usr,String pass){
         try {
+            Class.forName("com.mysql.jdbc.Driver");
             // Connection conn=DriverManager.getConnection("jdbc:mysql://10.1.2.70/webdb", "root", "root");
             Connection conn=DriverManager.getConnection(url, usr, pass);
             return new DBHandler(conn);
         } catch (SQLException ex) {
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
@@ -52,6 +56,14 @@ public class DBHandler implements Closeable{
             return null;
         }
        
+    }
+
+    public Connection getConn() {
+        return conn;
+    }
+
+    public DBQueryExecutor getqExecutor() {
+        return qExecutor;
     }
     
     public void beginWrite() throws SQLException{
